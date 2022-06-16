@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EEF9BF;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    color: #75B79E;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.jogo {
+    padding: 0 122px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.carta {
+    background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    width: 117px;
+    height: 146px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 10px;
+    position: relative;
+}
+
+.frente,
+.verso {
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    position: absolute;
+    background-color: #A7E9AF; 
+    backface-visibility: hidden;
+    transition: all 2s;
+    transform-style: preserve-3d;
+}
+
+
+.virar .frente{
+    transform: rotateY(180deg);
+}
