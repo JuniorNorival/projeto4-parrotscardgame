@@ -18,6 +18,15 @@ h1 {
     text-align: center;
     margin: 40px 0;
 }
+.contador {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    color: #75B79E;
+    text-align: center;
+    margin: 20px 0;
+}
 
 .jogo {
     padding: 0 122px;
