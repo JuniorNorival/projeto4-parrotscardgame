@@ -66,6 +66,10 @@ h1 {
 }
 
 
-.virar .frente {
+.virar  .frente {
     transform: rotateY(180deg);
 }
+/* .certo .frente{
+    transform: rotateY(180deg);
+}
+ */
