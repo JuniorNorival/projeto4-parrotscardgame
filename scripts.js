@@ -96,11 +96,14 @@ function compararCartas() {
     segundaCarta = null;
 
     if (acertos == nCartas){
-
+        finalDeJogo ()
     }
 
 }
 function desvirarCartas(){
     primeiraCarta.parentNode.classList.remove("virar");
     segundaCarta.parentNode.classList.remove("virar");
+}
+function finalDeJogo (){
+    alert (`Você Ganhou em ${jogadas}`);
 }
