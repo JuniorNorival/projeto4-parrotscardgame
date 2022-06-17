@@ -48,6 +48,7 @@ h1 {
     justify-content: center;
     margin: 10px 10px;
     position: relative;
+    
 }
 
 .verso {
@@ -73,12 +74,22 @@ h1 {
 .virar .frente {
     transform: rotateY(180deg);
 }
-span{
+
+span {
     margin: 0;
 }
+
 .escondido {
-    display:none;
+    display: none;
 }
-@media (min-width: 614px){
-    
+
+@media (max-width: 400px) {
+
+    .jogo {
+        margin: 0 auto;
+        
+    }
+    .frente, .verso {
+        width: 100%;
+    }
 }
