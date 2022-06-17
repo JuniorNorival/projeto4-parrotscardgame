@@ -8,10 +8,30 @@ const cartasDisponiveis = [
     `<img class ="verso" src="./img/tripletsparrot.gif" alt=""> `,
     `<img class ="verso" src="./img/unicornparrot.gif" alt=""> `
 ]
-let jogadas = 0;
+let jogadas;
 let primeiraCarta = null;
 let segundaCarta = null;
-let acertos=0;
+let acertos;
+let segundos;
+let minutos;
+
+setInterval(function () {
+    cronometro()
+}, 1000);
+
+function iniciarJogo() {
+    jogadas = 0;
+    acertos = 0;
+    primeiraCarta = null;
+    segundaCarta = null;
+    segundos = 0;
+    minutos =0;
+    nCartas = 0;
+    qtdCartas();
+
+}
+iniciarJogo();
+
 function qtdCartas() {
     nCartas = prompt("Com quantas cartas você deseja jogar ? ");
     while (isNaN(nCartas) || nCartas < 4 || nCartas > 14 || nCartas % 2 !== 0) {
@@ -20,7 +40,7 @@ function qtdCartas() {
     }
 
 }
-qtdCartas();
+
 
 function distribuirCartas() {
 
@@ -56,10 +76,10 @@ function virarCarta(elemento) {
 
     if (primeiraCarta == null) {
         primeiraCarta = imagemCarta;
-        console.log(primeiraCarta);
+        
     } else {
         segundaCarta = imagemCarta;
-        console.log(segundaCarta);
+        
     }
 
     if (primeiraCarta != null && segundaCarta != null) {
@@ -87,23 +107,55 @@ function compararCartas() {
     if (primeiraCarta.getAttribute("src") == segundaCarta.getAttribute("src")) {
         primeiraCarta.classList.add("certo");
         segundaCarta.classList.add("certo");
-        acertos +=2;
+        acertos += 2;
     } else {
         desvirarCartas();
-        
+
     }
     primeiraCarta = null;
     segundaCarta = null;
 
-    if (acertos == nCartas){
-        finalDeJogo ()
+    if (acertos == nCartas) {
+
+        finalDeJogo()
     }
 
 }
-function desvirarCartas(){
+
+function desvirarCartas() {
     primeiraCarta.parentNode.classList.remove("virar");
     segundaCarta.parentNode.classList.remove("virar");
 }
-function finalDeJogo (){
-    alert (`Você Ganhou em ${jogadas}`);
+
+function finalDeJogo() {
+    alert(`Você Ganhou em ${jogadas} jogadas e em ${minutos} minutos e ${segundos} segundos`);
+    let continuar = prompt("Deseja reiniciar o jogo ?");
+
+    if (continuar == 'sim') {
+        document.querySelectorAll(".jogo").innerHTML = "";
+        segundos = 0;
+        nCartas = 0;
+        iniciarJogo();
+    } else if (continuar == 'não') {
+        alert("Parabéns");
+    } else {
+        alert("Digite sim ou não.")
+        prompt("Deseja reiniciar o jogo ?");
+    }
+}
+
+function cronometro() {
+    
+    
+    
+        segundos++
+
+    
+    if (segundos == 60) {
+        minutos++;
+        segundos = 0;
+        
+        document.querySelector(".minutos").innerHTML = `${minutos}`
+    }
+    document.querySelector(".segundos").innerHTML = `${segundos}`
 }
