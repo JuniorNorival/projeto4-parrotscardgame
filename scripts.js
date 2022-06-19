@@ -38,7 +38,7 @@ function iniciarJogo() {
 iniciarJogo();
 
 function qtdCartas() {
-    nCartas = prompt(`Com quantas cartas você deseja jogar ? `);
+    nCartas = prompt(`Com quantas cartas você deseja jogar ? Escolha entre 4 e 14 cartas`);
     while (isNaN(nCartas) || nCartas < 4 || nCartas > 14 || nCartas % 2 !== 0) {
         alert("Por favor, digite um valor númerico PAR entre 4 e 14: ");
         nCartas = prompt("Com quantas cartas você deseja jogar ? ");
@@ -80,7 +80,7 @@ function virarCarta(elemento) {
 
         let imagemCarta = elemento.querySelector(".verso");
         cartasCertas = elemento.classList.contains("certo")
-        
+
         if (!cartasCertas) {
             if (primeiraCarta == null) {
                 primeiraCarta = imagemCarta;
@@ -106,8 +106,8 @@ function numeroDeJogadas(elemento) {
 
     const qtdJogadas = elemento.classList.contains("virar")
     contadorJogadas = document.querySelector(".contador")
-    
-    
+
+
     if (!cartasCertas) {
         if (qtdJogadas) {
             jogadas++
@@ -128,7 +128,7 @@ function compararCartas() {
         desvirarCartas();
 
     }
-    
+
     primeiraCarta = null;
     segundaCarta = null;
 
@@ -149,6 +149,11 @@ function finalDeJogo() {
 
     let continuar = prompt("Deseja reiniciar o jogo ?");
 
+    while (continuar != 'sim' && continuar != 'não') {
+
+        alert("Digite sim ou não.")
+        continuar = prompt("Deseja reiniciar o jogo ?");
+    }
     if (continuar == 'sim') {
         document.querySelector(".jogo").innerHTML = "";
         segundos = 0;
@@ -159,11 +164,12 @@ function finalDeJogo() {
     } else if (continuar == 'não') {
         alert("Parabéns");
         zerarJogo();
-    } else {
-        alert("Digite sim ou não.")
-        prompt("Deseja reiniciar o jogo ?");
     }
+
+
 }
+
+
 
 function cronometro() {
 
@@ -180,5 +186,5 @@ function cronometro() {
 
 function zerarJogo() {
     document.querySelector(".jogo").classList.add("escondido");
-    segundos = segundos;
+    
 }
