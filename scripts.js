@@ -15,6 +15,7 @@ let acertos;
 let segundos;
 let minutos;
 let contadorJogadas;
+let cartasCertas;
 
 
 
@@ -31,9 +32,7 @@ function iniciarJogo() {
     document.querySelector(".contador").innerHTML = `Você já realizou: 0 jogadas`;
 
     qtdCartas();
-    setInterval(function () {
-        cronometro()
-    }, 1000);
+    setInterval(cronometro, 1000);
 
 }
 iniciarJogo();
@@ -80,19 +79,23 @@ function virarCarta(elemento) {
         elemento.classList.add("virar");
 
         let imagemCarta = elemento.querySelector(".verso");
+        cartasCertas = elemento.classList.contains("certo")
+        
+        if (!cartasCertas) {
+            if (primeiraCarta == null) {
+                primeiraCarta = imagemCarta;
+                numeroDeJogadas(elemento);
+            } else if (primeiraCarta != imagemCarta) {
+                segundaCarta = imagemCarta;
+                numeroDeJogadas(elemento);
+            }
 
-        if (primeiraCarta == null) {
-            primeiraCarta = imagemCarta;
-            numeroDeJogadas(elemento);
-        } else if (primeiraCarta != imagemCarta) {
-            segundaCarta = imagemCarta;
-            numeroDeJogadas(elemento);
+            if (primeiraCarta != null && segundaCarta != null) {
+                setTimeout(compararCartas, 1000);
+
+            }
         }
 
-        if (primeiraCarta != null && segundaCarta != null) {
-            setTimeout(compararCartas, 1000);
-
-        }
 
     }
 
@@ -103,24 +106,29 @@ function numeroDeJogadas(elemento) {
 
     const qtdJogadas = elemento.classList.contains("virar")
     contadorJogadas = document.querySelector(".contador")
-
-    if (qtdJogadas) {
-        jogadas++
+    
+    
+    if (!cartasCertas) {
+        if (qtdJogadas) {
+            jogadas++
+        }
+        contadorJogadas.innerHTML = `Você já realizou: ${jogadas} jogadas`;
     }
-    contadorJogadas.innerHTML = `Você já realizou: ${jogadas} jogadas`;
+
 
 }
 
 function compararCartas() {
 
     if (primeiraCarta.getAttribute("src") == segundaCarta.getAttribute("src")) {
-        primeiraCarta.classList.add("certo");
-        segundaCarta.classList.add("certo");
+        primeiraCarta.parentNode.classList.add("certo");
+        segundaCarta.parentNode.classList.add("certo");
         acertos += 2;
     } else {
         desvirarCartas();
 
     }
+    
     primeiraCarta = null;
     segundaCarta = null;
 
