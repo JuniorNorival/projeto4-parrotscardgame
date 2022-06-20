@@ -79,7 +79,8 @@ function virarCarta(elemento) {
         elemento.classList.add("virar");
 
         let imagemCarta = elemento.querySelector(".verso");
-        cartasCertas = elemento.classList.contains("certo")
+        
+        cartasCertas = elemento.classList.contains("certo");
 
         if (!cartasCertas) {
             if (primeiraCarta == null) {
@@ -92,14 +93,9 @@ function virarCarta(elemento) {
 
             if (primeiraCarta != null && segundaCarta != null) {
                 setTimeout(compararCartas, 1000);
-
             }
         }
-
-
     }
-
-
 }
 
 function numeroDeJogadas(elemento) {
@@ -145,7 +141,7 @@ function desvirarCartas() {
 }
 
 function finalDeJogo() {
-    alert(`Você Ganhou em ${jogadas} jogadas e em ${minutos} minutos e ${segundos} segundos`);
+    alert(`Você ganhou em ${jogadas} jogadas e em ${minutos} minutos e ${segundos} segundos`);
 
     let continuar = prompt("Deseja reiniciar o jogo ?");
 
@@ -156,9 +152,7 @@ function finalDeJogo() {
     }
     if (continuar == 'sim') {
         document.querySelector(".jogo").innerHTML = "";
-        segundos = 0;
-        minutos = 0;
-        nCartas = 0;
+
         iniciarJogo();
 
     } else if (continuar == 'não') {
@@ -178,13 +172,23 @@ function cronometro() {
     if (segundos == 60) {
         minutos++;
         segundos = 0;
+        if (minutos < 10) {
+            document.querySelector(".minutos").innerHTML = `0${minutos}`
+        } else {
+            document.querySelector(".minutos").innerHTML = `${minutos}`
+        }
 
-        document.querySelector(".minutos").innerHTML = `${minutos}`
     }
-    document.querySelector(".segundos").innerHTML = `${segundos}`
+    if (segundos < 10) {
+        document.querySelector(".segundos").innerHTML = `0${segundos}`
+    } else {
+        document.querySelector(".segundos").innerHTML = `${segundos}`
+    }
+
+
 }
 
 function zerarJogo() {
     document.querySelector(".jogo").classList.add("escondido");
-    
+
 }

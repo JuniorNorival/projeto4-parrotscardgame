@@ -1,12 +1,16 @@
 * {
-    padding: 0;
-    margin: 0;
+
     box-sizing: border-box;
 }
 
 body {
     background-color: #EEF9BF;
     font-family: 'Roboto', sans-serif;
+}
+
+.topo {
+    display: flex;
+    justify-content: center;
 }
 
 h1 {
@@ -31,8 +35,18 @@ h1 {
     padding: 0;
 }
 
+.cronometro {
+    height: 50px;
+    position: sticky;
+    margin: 0 30px;
+    background-color: #9ae6c9;
+    color: rgb(75, 72, 72);
+
+}
+
 .jogo {
-    padding: 0 120px;
+    justify-content: center;
+    margin: 0 120px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -83,11 +97,13 @@ span {
 
 @media (max-width: 600px) {
 
-    .jogo {
-        margin: 0 auto;
-        display: block;
-        align-items: center;
+    .topo {
+        display: initial;
+    }
 
+    .cronometro {
+        position: initial;
+        background-color: initial;
     }
 
     .frente,
