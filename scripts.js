@@ -18,6 +18,7 @@ let contadorJogadas;
 let cartasCertas;
 
 
+iniciarJogo();
 
 function iniciarJogo() {
 
@@ -32,10 +33,10 @@ function iniciarJogo() {
     document.querySelector(".contador").innerHTML = `Você já realizou: 0 jogadas`;
 
     qtdCartas();
-    setInterval(cronometro, 1000);
+    
 
 }
-iniciarJogo();
+
 
 function qtdCartas() {
     nCartas = prompt(`Com quantas cartas você deseja jogar ? Escolha entre 4 e 14 cartas`);
@@ -44,6 +45,7 @@ function qtdCartas() {
         nCartas = prompt("Com quantas cartas você deseja jogar ? ");
     }
     distribuirCartas();
+    
 }
 
 
@@ -65,7 +67,7 @@ function distribuirCartas() {
         </div>`
         document.querySelector(".jogo").innerHTML += templateJogo
     }
-
+    
 }
 
 
@@ -168,7 +170,7 @@ function finalDeJogo() {
 function cronometro() {
 
     segundos++
-
+    console.log(segundos)
     if (segundos == 60) {
         minutos++;
         segundos = 0;
@@ -192,3 +194,4 @@ function zerarJogo() {
     document.querySelector(".jogo").classList.add("escondido");
 
 }
+setInterval(cronometro, 1000);
